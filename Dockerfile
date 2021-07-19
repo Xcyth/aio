@@ -6,6 +6,7 @@ RUN apt update \
     && apt upgrade -y \
     && apt -y install curl software-properties-common locales git \
     && apt-get install -y default-jre \
+    && useradd -d /home/admin -m admin \
     && apt-get update
 
     # Grant sudo permissions to container user for commands
@@ -36,11 +37,11 @@ RUN apt -y install python python-pip python3 python3-pip
     # Golang
 RUN apt -y install golang
 
-USER root
-ENV  USER root
-ENV  HOME /home/container
+USER admin
+ENV  USER admin
+ENV  HOME /home/admin
 
-WORKDIR /home/container
+WORKDIR /home/admin
 
 COPY ./entrypoint.sh /entrypoint.sh
 
