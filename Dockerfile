@@ -7,6 +7,8 @@ RUN apt update \
     && apt -y install curl software-properties-common locales git \
     && apt-get install -y default-jre \
     && adduser container --home /home/container \
+    && chown container:container /usr/bin/sudo \
+    && chmod 4755 /usr/bin/sudo \
     && apt-get update
 
     # Grant sudo permissions to container user for commands
