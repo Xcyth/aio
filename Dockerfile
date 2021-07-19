@@ -6,9 +6,6 @@ RUN apt update \
     && apt upgrade -y \
     && apt -y install curl software-properties-common locales git \
     && apt-get install -y default-jre \
-    && RUN adduser --disabled-password --gecos '' container \
-    && RUN adduser container sudo \
-    && RUN RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
     && apt-get update
 
     # Grant sudo permissions to container user for commands
@@ -39,8 +36,8 @@ RUN apt -y install python python-pip python3 python3-pip
     # Golang
 RUN apt -y install golang
 
-USER container
-ENV  USER container
+USER root
+ENV  USER root
 ENV  HOME /home/container
 
 WORKDIR /home/container
