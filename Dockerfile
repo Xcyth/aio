@@ -6,8 +6,9 @@ RUN apt update \
     && apt upgrade -y \
     && apt -y install curl software-properties-common locales git \
     && apt-get install -y default-jre \
-    && adduser container --home /home/container \
-    && usermod -aG sudo container \
+    && RUN adduser --disabled-password --gecos '' container \
+    && RUN adduser container sudo \
+    && RUN RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
     && apt-get update
 
     # Grant sudo permissions to container user for commands
